@@ -10,16 +10,22 @@ const Title = ({ text }) => (
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad
   const average = ( good * 1 + neutral * 0 + bad * -1 ) / all;
-  return (
-    <p>
-      good {good}<br />
-      neutral {neutral}<br />
-      bad {bad}<br />
-      all {all}<br />
-      average {average}<br />
-      positive {100 * good / all} %<br />
-    </p>
-  )
+  if ( all === 0 ) {
+    return (
+      <p>No feedback given</p>
+    )
+  } else {
+    return (
+      <p>
+        good {good}<br />
+        neutral {neutral}<br />
+        bad {bad}<br />
+        all {all}<br />
+        average {average}<br />
+        positive {100 * good / all} %<br />
+      </p>
+    )
+  }
 }
 
 const App = () => {
