@@ -138,7 +138,7 @@ const App = () => {
   
   return (
     <div>
-      Anecdota# {selected} <br />
+      Anecdote# {selected} <br />
       {anecdotes[selected]} <br />
       <Votes votes={votes[selected]}/>
       <Button onClick={handleVoteClick} text="vote" />
