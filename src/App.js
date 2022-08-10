@@ -70,6 +70,19 @@ import { useState } from 'react'
 
 
 // Aqui comienza ejercicios 1.12 - 1.14
+const Button = ({ onClick, text }) => {
+  return (
+    <button onClick={onClick}>
+      {text}
+    </button>
+  )
+}
+const Votes = ({votes}) => {
+  return (
+    <p>has {votes} votes <br /></p>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -87,10 +100,28 @@ const App = () => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
   }
-  const [selected, setSelected] = useState(getRandomInt(0,anecdotes.length))
+  const points = new Uint8Array(anecdotes.length);
+  
+  const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([...points])
+
+  const handleNextAnecdoteClick = () => {
+    setSelected(getRandomInt(0,anecdotes.length))
+  }
+  console.log(selected)
+  const handleVoteClick = () => {
+    votes[selected] += 1;
+    setVotes(votes)
+  }
+  console.log(votes)
+  
+
   return (
     <div>
-      {anecdotes[selected]}
+      {anecdotes[selected]} <br />
+      <Votes votes={votes[selected]}/>
+      <Button onClick={handleVoteClick} text="vote" />
+      <Button onClick={handleNextAnecdoteClick} text="next anecdote" />
     </div>
   )
 }
