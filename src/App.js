@@ -82,6 +82,15 @@ const Votes = ({votes}) => {
     <p>has {votes} votes <br /></p>
   )
 }
+const MasVotada = ({number ,anecdote, votes}) => {
+  return (
+    <div>
+      <p>Most voted anecdote is:</p>
+      <p>Anecdote# {number} <br /> {anecdote} </p>
+      <p>Votes: {votes} </p>
+    </div>
+  )
+}
 
 const App = () => {
   const anecdotes = [
@@ -134,9 +143,7 @@ const App = () => {
       <Votes votes={votes[selected]}/>
       <Button onClick={handleVoteClick} text="vote" />
       <Button onClick={handleNextAnecdoteClick} text="next anecdote" />
-      <div>Anecdota# {mostVoted}</div>
-      <div>Most voted anecdote is {anecdotes[mostVoted]} </div>
-      <div>Votos {votes[mostVoted]} votos</div>
+      <MasVotada number={mostVoted} anecdote={anecdotes[mostVoted]} votes={votes[mostVoted]}/>
     </div>
   )
 }
